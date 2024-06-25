@@ -1,0 +1,19 @@
+div.background {
+    background-image: url("https://garden.spoonflower.com/c/15850534/p/f/m/jEcXjGmHuV1nAlKuBLq50CH8p06fQ7lONnTU13-ugHXH2bSWk3G1QbmwfmvM/M%20Rainbow%20%20geometric%20modern%20retro%20teal%20orange%20%20%200010%20I%20%20aesthetic%20%20plaid%20fabric%20wallpaper%20harmony%20ombre%20'70%20%20%20teal%20%20%20turquoise%20sea%20orange%20pumpkin%20carrot%20.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100svh;
+}
+img {
+    width: 100%;
+    max-width: 200px;
+  }
+
+form{
+    padding-top: 100px;
+    margin: 0 auto;;
+    max-width: 250px;
+    color: rgb(209, 72, 72);
+    
+}

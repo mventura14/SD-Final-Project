@@ -1,0 +1,42 @@
+.comments-container{
+    display: flex;
+    flex-flow: column;
+    
+}
+
+.comment-card{
+    display: flex;
+    flex-flow: column;
+    
+    background-color: rgba(155, 210, 184, 0.392);
+    margin-block: .5rem;
+}
+
+.comment-header{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    
+    background-color: rgba(169, 226, 210, 0.392);
+
+    p{
+        height: 100%;
+        flex: 1 1;
+        vertical-align: middle;
+    }
+}
+
+.comment-body{
+    display: flex;
+    flex-flow: row nowrap;
+
+   margin: 50px;
+    background-color: rgba(155, 210, 184, 0.392);
+}
+
+.Button
+{
+    margin:50px;
+}

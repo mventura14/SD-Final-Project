@@ -1,0 +1,101 @@
+
+<div class="bg-image" style="background-image: url('assets/images/cityscapeorange.png'); background-size: cover; background-attachment: fixed; ">
+<div class="wrapper">
+    <div class="bg-image">
+        
+        <div class="create-community-row" *ngIf="!selected && !newCommunity && checkLogin()">
+            <button class="btn btn-warning" (click)="createNewCommunity()">Create New Community</button>
+        </div>
+
+        <div class="communities-container" *ngIf="!selected && !newCommunity">
+            <div class="community-card" *ngFor="let community of communities" (click)="displayCommunity(community)">
+                <div class="img-container">
+                    <img [src]="community.imageUrl">
+                </div>
+                <h5>{{community.name}}</h5>
+                <p>{{community.description}}</p>
+   
+            </div>
+        </div>
+
+        <div class="edit-community" *ngIf="editCommunity">
+            <form name="editForm">
+                <div class="form-floating">
+                    <input class="form-control" type="text" name="name" [(ngModel)]="editCommunity.name">
+                    <label for="name">Community Name: </label>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control" type="text" name="description" [(ngModel)]="editCommunity.description">
+                    <label for="author">Description: </label>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control" type="text" name="discordUrl" [(ngModel)]="editCommunity.discordUrl">
+                    <label for="discordUrl">Discord URL: </label>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control" type="text" name="imageUrl" [(ngModel)]="editCommunity.imageUrl">
+                    <label for="imageUrl">Image URL: </label>
+                </div>
+                <br>
+                <button class="btn bg-warning" (click)="updateCommunity(editCommunity)">Save</button>
+                <br>
+                <br>
+                <button class="btn bg-warning" (click)="editCommunity = null">Cancel</button>
+            </form>
+        </div>
+        <div id="communityPage" *ngIf="selected">
+            <div class="col-12" *ngIf="!editCommunity">
+                
+                
+                <div class="head" *ngIf="!selectedPost && !editCommunity">
+                    <div class="img-container">
+                        <img [src]="selected.imageUrl" alt="">
+                    </div>
+                    <div class="text-container">
+                        <h1>{{selected.name}}</h1>
+                        <p>{{selected.description}}</p>
+                        <p>{{selected.discordUrl}}</p>
+                        
+                    </div>
+                </div>
+                <button class="btn btn-warning " (click)="displayCommunities()"><strong>Back</strong></button>
+                <button class="btn btn-warning ms-3" (click)="setEditCommunity()"
+                    *ngIf="true === (userId == 1 && checkLogin())  "><strong>Edit Community</strong></button>
+                    
+            </div>
+        </div>
+        <app-post class="post-container" (selectedPost)="receiveSelectedPost($event)" *ngIf="!editCommunity"></app-post>
+
+        <div class="new-community-container" *ngIf="newCommunity">
+            <form #communityForm="ngForm">
+                <h2>Create New Community</h2>
+
+                <div class="form-group">
+                    <label for="name">Community Name</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="newCommunity.name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" [(ngModel)]="newCommunity.description"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="discordUrl">Discord URL</label>
+                    <input type="url" id="discordUrl" name="discordUrl" [(ngModel)]="newCommunity.discordUrl">
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="newCommunity.imageUrl">
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-warning" (click)="createCommmunity(newCommunity)">Create</button>
+                    <button type="button" class="btn btn-dark" (click)="newCommunity = null">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+
+
+  <div class="footer"></div>
+
+    </div>

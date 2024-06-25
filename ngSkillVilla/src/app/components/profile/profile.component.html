@@ -1,0 +1,87 @@
+<div class="background">
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-7">
+        <div class="background-card">
+          <div class="card p-3 py-4">
+            <div class="background-image">
+              <div class="text-center">
+                <br />
+                <br />
+                <img class="img-account-profile rounded-circle mb-2" [src]="loggedInUser?.imageUrl" />
+              </div>
+              <div class="text-center mt-5">
+                <span class="badge bg-success p-1 px-4 rounded text-white">{{
+                  loggedInUser?.role
+                  }}</span>
+                <br />
+                <br />
+                <h5 class="mt-2 mb-0">{{ loggedInUser?.username }}</h5>
+                <br />
+
+                <div class="aboutMe">
+                  <span><strong>About Me</strong></span>
+                  <div class="px-4 mt-1">
+                    <p class="fonts"></p>
+                    <p>{{loggedInUser?.bio}}</p>
+                   
+                  </div>
+                </div>
+                <div class="skills">
+                  <span><strong>My Skills</strong></span>
+
+
+                  <ul *ngIf="loggedInUser" class="skill-list skill-list list-unstyled">
+                    <li *ngFor=" let skill of loggedInUser.skills" class="list-group-item">
+                      {{ skill.skill?.name }} - {{skill.level}}
+                    </li>
+                  </ul>
+                  <!-- Add skill to user -->
+                  <button class="btn btn-primary p-1" (click)="populateSkills()" *ngIf="!addingSkill">Add New Skill</button>
+                  <button class="btn btn-primary p-1" (click)="populateSkills()" *ngIf="addingSkill">Back</button>
+                  <br>
+                  <br>
+                  <div ngClass="addUserSkill" class="mb-2" *ngIf="addingSkill">
+                    <label for="skillOption"><strong>Skill</strong></label>
+                    <input list="optionsList" id="skillOption" name="options" (input)="onOptionSelected($event)">
+
+                    <datalist id="optionsList">
+                      <option *ngFor="let skill of skillList" [value]="skill.name"></option>
+                    </datalist>
+                    <label for="skillLevel"><strong>Skill Level</strong></label>
+                    <select class="form-select" name="level" id="skillLevel" [(ngModel)]="level">
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Expert">Expert</option>
+                    </select>
+                    <br>
+                    <button class="btn btn-primary p-1 px-2" (click)="addSkill(selectedSkill,level)">Add</button>
+
+
+
+                  </div>
+                </div>
+
+                <!-- <button class="btn btn-primary px-4 ms-3">Contact</button> -->
+                <div *ngIf="loggedInUser && !addingSkill">
+                  <button name="emailButton" class="btn success" (click)="showEmail = !showEmail">
+                    <strong>Contact Me!</strong>
+                  </button>
+                  <h1 *ngIf="showEmail">{{ loggedInUser.email }}</h1>
+                </div>
+                <br />
+                <div *ngIf="loggedInUser && !addingSkill">
+                  <button class="btn bg-success" (click)="getEditProfile(loggedInUser)">
+                    <strong>Edit Profile</strong>
+                  </button>
+                  <br />
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

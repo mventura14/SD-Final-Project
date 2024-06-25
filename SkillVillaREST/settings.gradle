@@ -1,0 +1,2 @@
+rootProject.name = 'SkillVillaREST'
+includeFlat 'SkillVillaJPA'

@@ -1,0 +1,84 @@
+<div>
+    
+    
+</div>
+
+<div>
+    <button name="create-post" class="btn btn-warning" (click)="createNewPost()" *ngIf="!newPost"><strong>Create Post</strong></button>
+    <div *ngIf="!selected && !editPost && !newPost">
+        <!-- class="post-container" -->
+        <div class="post-container container-fluid" *ngFor="let post of posts">
+            {{updateNewComment(post)}}
+            <div class="col-12" >
+                <div class="post-header" *ngIf="post.user">
+                    <div class="post-user"><span>{{post.user.username}}</span></div>
+                    <!-- <div class="post-timestamp">Created at: <span>{{post.createdAt}}</span></div> -->
+                    <button (click)="setEditPost(post)" class="btn btn-outline-dark" *ngIf="post.user.id == userId">
+                    <strong>Edit Post</strong>
+                    </button>
+                </div>
+                <img class="col-12" [src]="post.imageUrl" alt="">
+                
+            </div>
+            <div class="post-description" >{{post.description}}</div>
+            <div class="post-footer" (click)="log(post)">
+                <button class="btn btn-info" (click)="toggleComments(post)">Show All Comments</button>
+            </div>
+            <br>
+            <div>
+                <textarea name="message" [(ngModel)]="post.newComment.message" placeholder="Comment"></textarea>
+                <br><button class="btn btn-primary" (click)="addComment(post)" >Add New Comment</button> 
+                <br>
+                <br>
+               
+            </div>
+            
+            <app-comments [parentPost]="selectedPostComments" *ngIf="selectedPostComments == post"></app-comments>
+            
+            <button name="create-post" class="btn btn-warning" (click)="createNewPost()" *ngIf="!newPost"><strong>Create New Post</strong></button>
+        </div>
+    </div>
+    
+    <!-- <div class="postPage" *ngIf="selected">
+        <button class="btn btn-success" (click)="sendSelectedPost(null)">Back</button>
+        <h1>{{selected.imageUrl}}</h1>
+        <h1>{{selected.description}}</h1>
+        
+    </div> -->
+    
+    
+    <div *ngIf="newPost">
+        <h3>Create New Post</h3>
+        <form (ngSubmit)="addPost(newPost, currentCommunityId)">
+            <div class="form-group">
+                <label for="postDescription">Post</label>
+                <textarea id="postDescription" [(ngModel)]="newPost.description" name="description" class="form-control"
+                required>
+            </textarea>
+            
+            <label for="">Image Url</label>
+            <input type="text" name="imageUrl" [(ngModel)]="newPost.imageUrl">
+            
+        </div>
+        <button class="btn btn-warning" type="submit">Create</button>
+        <button class="btn btn-warning ms-2" (click)="newPost=null">Cancel</button>
+    </form>
+</div>
+
+<div *ngIf="editPost">
+    <h3>Edit Post</h3>
+    <form (ngSubmit)="updatePost(editPost, currentCommunityId)">
+        <div class="form-group">
+            <label for="editPostDescription">Description</label>
+            <textarea id="editPostDescription" [(ngModel)]="editPost.description" name="description"
+            class="form-control" required>
+        </textarea>
+        
+        <label for="">Image Url</label>
+        <input type="text" name="imageUrl" [(ngModel)]="editPost.imageUrl">
+    </div>
+    <button type="button" (click)="editPost = null" class="btn btn-warning">Cancel</button>
+    <button type="submit" class="btn btn-warning">Save Changes</button>
+    <button (click)="deletePost(currentCommunityId, editPost.id)" class="btn btn-warning">Delete</button>
+</form>
+</div>

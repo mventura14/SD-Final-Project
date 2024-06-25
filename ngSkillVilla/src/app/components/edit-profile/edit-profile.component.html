@@ -1,0 +1,68 @@
+<div class="background">
+  <hr class="mb-4">
+  <div class="row">
+      <div class="col-xl-3">
+          <!-- Profile picture card-->
+          <div class="card mb-4 mb-xl-2">
+              <div class="card-header">Profile Picture</div>
+              <div class="profile">
+                  <div class="card-body text-center">
+                      <!-- Profile picture image-->
+                      <img class="img-account-profile rounded-circle mb-2" [src]="editUser?.imageUrl" />
+                  </div>
+                  <div class="text-center">
+                  <h3 *ngIf="editUser">{{editUser.username}}</h3></div>
+                </div>
+          </div>
+      </div>
+      <div class="col-xl-9">
+          <!-- Account details card-->
+          <div *ngIf="editUser" class="card mb-4">
+              <div class="card-header">Account Details</div>
+              <div class="card-body">
+                  <form>
+                      <!-- Form Group (username)-->
+                      <!-- <div class="mb-3">
+                          <label class="small mb-1" for="inputUsername">Username</label>
+                          <input class="form-control" name="username" id="inputUsername" type="text" [(ngModel)]="editUser.username" placeholder="Enter your username" />
+                      </div>
+                      <div class="mb-3">
+                        <label class="small mb-1" for="inputpassword">Password</label>
+                        <input class="form-control" name="password" id="inputPassword" type="text" [(ngModel)]="editUser.password" placeholder="Enter your password" />
+                    </div> -->
+                      <!-- Form Row-->
+                      <div class="row gx-3 mb-3">
+                          <!-- Form Group (first name)-->
+                          <div class="col-md-6">
+                              <label class="small mb-1" for="inputFirstName">First name</label>
+                              <input class="form-control" name="firstName" id="inputFirstName" type="text" [(ngModel)]="editUser.firstName" placeholder="Enter your first name" />
+                          </div>
+                          <!-- Form Group (last name)-->
+                          <div class="col-md-6">
+                              <label class="small mb-1" for="inputLastName">Last name</label>
+                              <input class="form-control" name="lastName" id="inputLastName" type="text" [(ngModel)]="editUser.lastName" placeholder="Enter your last name" />
+                          </div>
+                      </div>
+                      <!-- Form Row -->
+                      <div class="row gx-3 mb-3">
+                          <!-- Form Group (email address)-->
+                          <div class="mb-3">
+                              <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                              <input class="form-control" name="email" id="inputEmailAddress" type="email" [(ngModel)]="editUser.email" placeholder="Enter your email address" />
+                          </div>
+                          <!-- Continue with other form fields as needed -->
+                          <div class="mb-3">
+                            <label class="small mb-1" for="inputBio">Bio</label>
+                            <input class="form-control" name="bio" id="inputBio" type="text" [(ngModel)]="editUser.bio" placeholder="Tell us a little about yourself!" />
+                        </div>
+                      </div>
+                      <!-- Save changes button-->
+                      <button class="btn info" (click)="updateUserProfile(editUser)">
+                          Save
+                      </button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
